@@ -12,6 +12,7 @@ gem 'git'
 gem 'pronto'
 gem 'pronto-rubocop'
 gem 'pronto-flay'
+gem 'slim-rails'
 
 group :development, :test do
   gem 'byebug'
