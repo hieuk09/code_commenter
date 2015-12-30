@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: code_commenter_developement
+
+test:
+  <<: *default
+  database: code_commenter_test
+
+production:
+  <<: *default
+  database: code_commenter_production
+  user: tinypulse

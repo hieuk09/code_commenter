@@ -26,7 +26,6 @@ describe Repo do
   describe '#pull_requests' do
     it 'fetchs pull requests' do
       pull_requests = Repo.new.pull_requests
-      require 'byebug'; debugger
       expect(pull_requests).not_to be_nil
     end
   end

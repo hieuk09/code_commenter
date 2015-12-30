@@ -1,4 +1,5 @@
 require 'capistrano/puma'
+require 'capistrano/rvm'
 
 # config valid only for current version of Capistrano
 lock '3.4.0'
@@ -13,10 +14,11 @@ set :pty, true
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
-set :linked_files, %w{config/database.yml .pronto.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml .pronto.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets data}
 set :rvm_type, :user
-set :rvm_ruby_version, '2.2.3'
+set :rvm_ruby_version, '2.2.3@code_commenter'
+set :rvm_map_bins, %w{gem rake ruby bundle}
 
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
