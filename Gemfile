@@ -9,8 +9,12 @@ gem 'rails', '4.2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem "octokit", "~> 4.0"
+gem "octokit"
 gem 'pg'
+gem 'git'
+gem 'pronto'
+gem 'pronto-rubocop'
+gem 'pronto-flay'
 
 group :development, :test do
   gem 'byebug'
