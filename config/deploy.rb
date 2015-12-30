@@ -3,9 +3,7 @@ lock '3.4.0'
 
 set :application, 'code_commenter'
 set :repo_url, 'git@github.com:hieuk09/code_commenter.git'
-
-# Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
