@@ -15,7 +15,12 @@
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
 
 .pronto.yml
+config/secrets.yml
+config/database.yml
+
 private.pem
+
 data/
