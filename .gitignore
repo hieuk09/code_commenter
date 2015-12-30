@@ -17,4 +17,5 @@
 /tmp
 
 .pronto.yml
+private.pem
 data/
