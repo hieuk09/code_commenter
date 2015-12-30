@@ -38,11 +38,6 @@ set :puma_init_active_record, true
 set :puma_preload_app, true
 
 namespace :deploy do
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-    end
-  end
-
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
