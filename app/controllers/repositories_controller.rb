@@ -28,19 +28,25 @@ class RepositoriesController < ApplicationController
     @repository = Repository.new( path: path, name: name, link: link)
 
     if @repository.save
-      Rugged::Repository.clone_at(link, path)
+      credentials = Rugged::Credentials::UserPassword.new(
+        username: Rails.application.secrets.github_access_account,
+        password: Rails.application.secrets.github_access_token
+      )
+      Rugged::Repository.clone_at(link, path, { credentials: credentials })
       client = Octokit::Client.new(
         login: Rails.application.secrets.github_access_account,
         password: Rails.application.secrets.github_access_token
       )
 
-      client.create_hook(name, 'web', {
+      data = client.create_hook(name, 'web', {
         url: Rails.application.secrets.webhook_api,
         content_type: 'json'
       }, {
         events: ['pull_request'],
         active: true
       })
+      @repository.hook_id = data['id']
+      @repository.save
       redirect_to @repository, notice: 'Repository was successfully created.'
     else
       render :new
@@ -58,8 +64,11 @@ class RepositoriesController < ApplicationController
 
   # DELETE /repositories/1
   def destroy
-    @repository.destroy
-    redirect_to repositories_url, notice: 'Repository was successfully destroyed.'
+    if Repositories::Destroy.execute(@repository)
+      redirect_to repositories_url, notice: 'Repository was successfully destroyed.'
+    else
+      redirect_to repositories_url, notice: 'Can not destroy this repository'
+    end
   end
 
   private
