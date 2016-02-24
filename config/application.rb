@@ -22,5 +22,16 @@ module CodeCommenter
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    Warden::Manager.serialize_into_session do |user|
+      user.id
+    end
+
+    Warden::Manager.serialize_from_session do |id|
+      User.find_by_id(id)
+    end
+
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+    end
   end
 end
