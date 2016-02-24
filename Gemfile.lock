@@ -206,6 +206,8 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.4)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -229,6 +231,7 @@ DEPENDENCIES
   rspec-rails
   slim-rails
   uglifier
+  warden
 
 BUNDLED WITH
    1.11.2

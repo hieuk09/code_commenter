@@ -15,6 +15,7 @@ gem 'pronto-flay'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'uglifier'
+gem 'warden'
 
 group :development, :test do
   gem 'byebug'
