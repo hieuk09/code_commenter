@@ -34,5 +34,10 @@ module CodeCommenter
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
       manager.failure_app = UnauthorizedController
     end
+
+    config.middleware.use OmniAuth::Builder do
+      provider :github, ENV["GITHUB_CLIENT_KEY"], ENV["GITHUB_CLIENT_SECRET"],
+        { provider_ignores_state: true }
+    end
   end
 end

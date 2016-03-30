@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'uglifier'
 gem 'warden'
 gem 'omniauth-github'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug'
