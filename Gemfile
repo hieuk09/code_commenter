@@ -16,6 +16,7 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'uglifier'
 gem 'warden'
+gem 'omniauth-github'
 
 group :development, :test do
   gem 'byebug'
